@@ -17,6 +17,7 @@ Solo Mac con chip Apple (M1 o posterior). Otras versiones en [Releases](https://
 - [Modo clínico](#modo-clínico)
 - [Idiomas y motores](#idiomas-y-motores)
 - [Motores en la nube (opcional, nunca con pacientes)](#motores-en-la-nube-opcional-nunca-con-pacientes)
+- [Diccionario médico](#diccionario-médico)
 - [Dónde se guardan los datos](#dónde-se-guardan-los-datos)
 - [Problemas frecuentes](#problemas-frecuentes)
 
@@ -68,7 +69,12 @@ Solo Mac con chip Apple (M1 o posterior). Otras versiones en [Releases](https://
    - Después, unos pocos segundos.
 6. Selecciona el texto, cópialo (⌘C) y pégalo donde lo necesites.
 
-**En directo:** si activas **«En directo (Nemotron, local)»** antes de grabar, el texto aparece mientras hablas. Al pulsar **Parar** se muestra el texto final. Después puedes volver a pulsar **Transcribir** para pasar la misma grabación por otro motor. Funciona en todos los idiomas salvo catalán y euskera, y la primera vez tarda unos segundos en prepararse.
+**En directo:** si activas **«En directo (Nemotron, local)»** antes de grabar, el texto aparece mientras hablas. Al pulsar **Parar** se muestra el texto final. Después puedes volver a pulsar **Transcribir** para pasar la misma grabación por otro motor. Funciona en todos los idiomas salvo catalán y euskera. Puedes hablar en cuanto pulses Grabar: si el modelo aún se está preparando, el audio espera y no se pierde nada.
+
+**Atajo desde cualquier programa (⌃⌥D, Control + Opción + D):**
+- **Primera pulsación:** empieza a grabar y suena un «tin».
+- **Segunda pulsación:** para, transcribe con el idioma, motor y modo elegidos, y **copia el texto**. Suena un aviso y basta con pegar (⌘V) en la historia clínica.
+- **Requisitos:** la ventana de CloneTranscribeX puede quedar detrás de otras, pero **no la cierres**. No hace falta ningún permiso especial.
 
 > **La transcripción no se guarda.** Solo se ve en pantalla. Cópiala antes de cerrar la app o de hacer otra grabación. El audio sí se guarda (ver [Dónde se guardan los datos](#dónde-se-guardan-los-datos)).
 
@@ -126,6 +132,19 @@ Las claves se guardan cifradas en el **Llavero de macOS**. La app nunca las mues
 
 ---
 
+## Diccionario médico
+
+La app trae una lista de términos de traumatología y medicina regenerativa: proloterapia, BMAC, artroplastia, manguito rotador, etc.
+- **Whisper** la recibe como contexto antes de transcribir.
+- **En todos los motores**, al terminar, se corrigen con prudencia las palabras casi iguales a un término. Por ejemplo, «artoplastia» pasa a «artroplastia» y «maguito rotador» a «manguito rotador».
+- **Lo que no toca:** plurales, femeninos ni palabras normales. Las siglas solo se ajustan si coinciden exactamente.
+
+Para editarla, ve a **Ajustes (⌘,)** → **Diccionario médico**: un término por línea. **«Restaurar la lista inicial»** la devuelve a como venía. El diccionario nunca sale del Mac.
+
+En una prueba con frases sintéticas, los aciertos en 17 términos médicos pasaron de 14 a 17 con Parakeet y de 14 a 16 con Whisper.
+
+---
+
 ## Dónde se guardan los datos
 
 | Qué | Dónde |
@@ -158,6 +177,7 @@ Para abrir la carpeta de grabaciones:
 | Error al transcribir la primera vez | Comprueba la conexión a internet: hace falta para descargar el modelo. |
 | «Falta la clave de…» | Añádela en **Ajustes (⌘,)**. Solo afecta a los motores en la nube. |
 | «… no admite …» | Ese motor no tiene ese idioma. Elige otro motor en la lista. |
+| Los menús salen en inglés | Pasaba hasta la versión 0.2.0. Actualiza a la 0.3.0. |
 | El interruptor «En directo» está gris | Estás grabando, o el idioma es catalán o euskera (Nemotron no los admite). |
 | No aparecen ElevenLabs ni Mistral | Estás en modo clínico, que es lo correcto con pacientes. Para otros usos, pulsa «Desbloquear nube…». |
 
